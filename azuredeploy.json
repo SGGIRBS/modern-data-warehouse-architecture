@@ -1,0 +1,160 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "contentVersion": "1.0.0.1",
+    "parameters": {
+        "companyName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the company"
+            }
+        },
+        "environment": {
+            "type": "string",
+            "allowedValues": [
+                "dev",
+                "test",
+                "acc",
+                "prod"
+            ],
+            "metadata": {
+                "description": "The name of the environment"
+            }
+        },
+        "templateBaseUri": {
+            "type": "string",
+            "defaultValue": "https://raw.githubusercontent.com/wmeints/modern-datawarehouse/master/",
+            "metadata": {
+                "description": "The GIT repository the templates are stored in"
+            }
+        }
+    },
+    "variables": {
+        "resourceGroupName": "[concat(toLower(parameters('companyName')),'-dwh-', toLower(parameters('environment')))]",
+        "namingConventionTemplateFile": "[concat(parameters('templateBaseUri'), 'shared/naming-convention.json')]",
+        "dataFactoryTemplateFile": "[concat(parameters('templateBaseUri'), 'resources/data-factory.json')]",
+        "databricksWorkspaceTemplateFile": "[concat(parameters('templateBaseUri'), 'resources/databricks-workspace.json')]",
+        "dataLakeTemplateFile": "[concat(parameters('templateBaseUri'), 'resources/data-lake.json')]"
+    },
+    "resources": [
+        {
+            "name": "dataFactoryName",
+            "apiVersion": "2018-05-01",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('namingConventionTemplateFile')]",
+                    "contentVersion": "1.0.1.0"
+                },
+                "parameters": {
+                    "companyName": {
+                        "value": "[parameters('companyName')]"
+                    },
+                    "resourceTypeAbbreviation": {
+                        "value": "adf"
+                    },
+                    "environment": {
+                        "value": "[parameters('environment')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "databricksWorkspaceName",
+            "apiVersion": "2018-05-01",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('namingConventionTemplateFile')]",
+                    "contentVersion": "1.0.1.0"
+                },
+                "parameters": {
+                    "companyName": {
+                        "value": "[parameters('companyName')]"
+                    },
+                    "resourceTypeAbbreviation": {
+                        "value": "bricks"
+                    },
+                    "environment": {
+                        "value": "[parameters('environment')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "storageAccountName",
+            "apiVersion": "2018-05-01",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('namingConventionTemplateFile')]",
+                    "contentVersion": "1.0.1.0"
+                },
+                "parameters": {
+                    "companyName": {
+                        "value": "[parameters('companyName')]"
+                    },
+                    "resourceTypeAbbreviation": {
+                        "value": "sa"
+                    },
+                    "environment": {
+                        "value": "[parameters('environment')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "dataFactoryTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('dataFactoryTemplateFile')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "dataFactoryName": {
+                        "value": "[reference('dataFactoryName').outputs.resourceName.value]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "databricksTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('databricksWorkspaceTemplateFile')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "workspaceName": {
+                        "value": "[reference('databricksWorkspaceName').outputs.resourceName.value]",
+                    }
+                }
+            }
+        },
+        {
+            "name": "dataLakeTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('dataLakeTemplateFile')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "storageAccountName": {
+                        "value": "[reference('storageAccountName').outputs.resourceName.value]"
+                    }
+                }
+            }
+        }
+    ]
+}
