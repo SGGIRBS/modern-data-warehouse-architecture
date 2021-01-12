@@ -3,4 +3,5 @@ az group create \
   --location "West Europe"
 az deployment group what-if \
   --resource-group ModernDW-rg \
-  --template-file "azuredeploy.json"
+  --template-file "azuredeploy.json" \
+  --parameters @parameters.json

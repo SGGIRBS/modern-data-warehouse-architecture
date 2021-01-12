@@ -20,6 +20,15 @@
                 "description": "The name of the environment"
             }
         },
+        "sqlAdministratorLogin": {
+            "type": "string"
+        },
+        "sqlAdministratorPassword": {
+            "type": "string"
+        },
+        "defaultDataLakeStorageFilesystemName": {
+            "type": "string"
+        },
         "templateBaseUri": {
             "type": "string",
             "defaultValue": "https://raw.githubusercontent.com/SGGIRBS/modern-data-warehouse-architecture/main/",
@@ -33,7 +42,8 @@
         "namingConventionTemplateFile": "[concat(parameters('templateBaseUri'), 'shared/naming-convention.json')]",
         "dataFactoryTemplateFile": "[concat(parameters('templateBaseUri'), 'resources/data-factory.json')]",
         "databricksWorkspaceTemplateFile": "[concat(parameters('templateBaseUri'), 'resources/databricks-workspace.json')]",
-        "dataLakeTemplateFile": "[concat(parameters('templateBaseUri'), 'resources/data-lake.json')]"
+        "dataLakeTemplateFile": "[concat(parameters('templateBaseUri'), 'resources/data-lake.json')]",
+        "synapseWorkspaceTemplateFile": "[concat(parameters('templateBaseUri'), 'resources/synapse-workspace.json')]"
     },
     "resources": [
         {
