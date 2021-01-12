@@ -22,7 +22,7 @@
         },
         "templateBaseUri": {
             "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/wmeints/modern-datawarehouse/master/",
+            "defaultValue": "https://raw.githubusercontent.com/SGGIRBS/modern-datawarehouse-architecture/master/",
             "metadata": {
                 "description": "The GIT repository the templates are stored in"
             }
@@ -106,6 +106,29 @@
             }
         },
         {
+            "name": "synapseWorkspaceName",
+            "apiVersion": "2018-05-01",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('namingConventionTemplateFile')]",
+                    "contentVersion": "1.0.1.0"
+                },
+                "parameters": {
+                    "companyName": {
+                        "value": "[parameters('companyName')]"
+                    },
+                    "resourceTypeAbbreviation": {
+                        "value": "synapse"
+                    },
+                    "environment": {
+                        "value": "[parameters('environment')]"
+                    }
+                }
+            }
+        },
+        {
             "name": "dataFactoryTemplate",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2018-05-01",
@@ -152,6 +175,38 @@
                 "parameters": {
                     "storageAccountName": {
                         "value": "[reference('storageAccountName').outputs.resourceName.value]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "synapseWorkspaceTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2018-05-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'dataLakeTemplate')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('synapseWorkspaceTemplateFile')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "synapseWorkspaceName": {
+                        "value": "[reference('synapseWorkspaceName').outputs.resourceName.value]"
+                    },
+                    "defaultDataLakeStorageAccountName": {
+                        "value": "[reference('storageAccountName').outputs.resourceName.value]"
+                    },
+                    "sqlAdministratorLogin": {
+                        "value": "[parameters('sqlAdministratorLogin')]"
+                    },
+                    "sqlAdministratorPassword": {
+                        "value": "[parameters('sqlAdministratorPassword')]"
+                    },
+                    "defaultDataLakeStorageFilesystemName": {
+                        "value": "[parameters('defaultDataLakeStorageFilesystemName')]"
                     }
                 }
             }
