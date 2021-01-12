@@ -6,7 +6,7 @@
             "value": "BriggsCorp"
         },
         "environment": {
-            "value": "Test"
+            "value": "test"
         },
         "sqlAdministratorLogin": {
             "value": "corp-admin"
