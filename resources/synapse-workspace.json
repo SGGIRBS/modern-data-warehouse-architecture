@@ -3,48 +3,48 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "synapseWorkspaceName": {
-            "type": "String"
+            "type": "string"
         },
         "defaultDataLakeStorageAccountName": {
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Data Lake Storage account that you will use for Synapse Workspace."
             }
         },
         "defaultDataLakeStorageFilesystemName": {
             "defaultValue": "workspace",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Container in Data Lake Storage account that you will use for Synapse Workspace."
             }
         },
         "sqlAdministratorLogin": {
-            "type": "String"
+            "type": "string"
         },
         "sqlAdministratorPassword": {
-            "type": "SecureString"
+            "type": "securestring"
         },
         "tagValues": {
             "defaultValue": {"Created with":"Synapse Azure Resource Manager deploment template"},
-            "type": "Object"
+            "type": "object"
         },
         "storageSubscriptionID": {
             "defaultValue": "[subscription().subscriptionId]",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Do not change this value if Data Lake Storage is placed in the same subscription as Synapse Workspace(recommended)."
             }
         },
         "storageResourceGroupName": {
             "defaultValue": "[resourceGroup().name]",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Do not change this value if Data Lake Storage is placed in the same resource group as Synapse Workspace."
             }
         },
         "storageLocation": {
             "defaultValue": "[resourceGroup().location]",
-            "type": "String",
+            "type": "string",
             "metadata": {
                 "description": "Do not change this value if Data Lake Storage is placed in the same region as Synapse Workspace(recommended)."
             }
@@ -77,7 +77,7 @@
             },
             "resources": [
                 {
-                    "type": "firewallrules",
+                    "type": "firewallRules",
                     "apiVersion": "2019-06-01-preview",
                     "name": "allowAll",
                     "location": "[resourceGroup().location]",
