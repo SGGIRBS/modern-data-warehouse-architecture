@@ -22,7 +22,8 @@
                 "dl",
                 "kv",
                 "sa",
-                "bricks"
+                "bricks",
+                "synapse"
             ],
             "metadata": {
                 "description": "The resource type you're deploying"
