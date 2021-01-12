@@ -21,7 +21,11 @@
             }
         },
         "commonTags": {
-            "type": "object"
+            "type": "object",
+            "defaultValue": {
+                "Owner": "Infra",
+                "ManagedBy": "ARM Template"
+            }  
         },
         "sqlAdministratorLogin": {
             "type": "string"
