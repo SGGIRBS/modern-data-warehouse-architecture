@@ -26,6 +26,13 @@
         "sqlAdministratorPassword": {
             "type": "string"
         },
+        "defaultDataLakeStorageFilesystemName": {
+            "defaultValue": "workspace",
+            "type": "string",
+            "metadata": {
+                "description": "Container in Data Lake Storage account that you will use for Synapse Workspace."
+            }
+        },
         "templateBaseUri": {
             "type": "string",
             "defaultValue": "https://raw.githubusercontent.com/SGGIRBS/modern-data-warehouse-architecture/main/",
@@ -182,6 +189,9 @@
                 "parameters": {
                     "storageAccountName": {
                         "value": "[reference('storageAccountName').outputs.resourceName.value]"
+                    },
+                    "defaultDataLakeStorageFilesystemName": {
+                        "value": "[parameters('defaultDataLakeStorageFilesystemName')]"
                     }
                 }
             }
@@ -211,6 +221,9 @@
                     },
                     "sqlAdministratorPassword": {
                         "value": "[parameters('sqlAdministratorPassword')]"
+                    },
+                    "defaultDataLakeStorageFilesystemName": {
+                        "value": "[parameters('defaultDataLakeStorageFilesystemName')]"
                     }
                 }
             }
