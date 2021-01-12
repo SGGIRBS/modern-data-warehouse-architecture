@@ -3,22 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "companyName": {
-            "value": ""
+            "value": "BriggsCorp"
         },
         "environment": {
-            "value": ""
-        },
-        "defaultDataLakeStorageAccountName": {
-            "value": ""
+            "value": "Test"
         },
         "sqlAdministratorLogin": {
-            "value": ""
+            "value": "corp-admin"
         },
         "sqlAdministratorPassword": {
-            "value": ""
+            "value": "Kdifdf935036"
         },
         "defaultDataLakeStorageFilesystemName": {
-            "value": ""
+            "value": "Test"
         }
     }
 }
