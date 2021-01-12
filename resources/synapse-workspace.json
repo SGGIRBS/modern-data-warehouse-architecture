@@ -25,8 +25,11 @@
             "type": "securestring"
         },
         "tagValues": {
-            "defaultValue": {"Created with":"Synapse Azure Resource Manager deploment template"},
-            "type": "object"
+            "type": "object",
+            "defaultValue": {
+                "Owner": "Infrastructure",
+                "ManagedBy": "ARM Template"
+            }
         },
         "storageSubscriptionID": {
             "defaultValue": "[subscription().subscriptionId]",
