@@ -7,7 +7,7 @@
             "metadata": {
                 "description": "The name of the storage account"
             },
-        "tags": {
+        "tagValues": {
             "type": "object"
             }
         }
@@ -21,7 +21,7 @@
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2018-07-01",
             "location": "[resourceGroup().location]",
-            "tags": "[parameters('tags')]",
+            "tags": "[parameters('tagValues')]",
             "properties": {
                 "accessTier": "Hot",
                 "supportsHttpsTrafficOnly": true,

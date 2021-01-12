@@ -21,11 +21,7 @@
             }
         },
         "commonTags": {
-            "type": "object",
-            "defaultValue": {
-                "Owner": "Infra",
-                "ManagedBy": "ARM Template"
-                }
+            "type": "object"
         },
         "sqlAdministratorLogin": {
             "type": "string"
@@ -159,7 +155,7 @@
                     "dataFactoryName": {
                         "value": "[reference('dataFactoryName').outputs.resourceName.value]"
                     },
-                    "tags": {
+                    "tagValues": {
                         "value": "[parameters('commonTags')]"
                     }
                 }
@@ -179,7 +175,7 @@
                     "workspaceName": {
                         "value": "[reference('databricksWorkspaceName').outputs.resourceName.value]"
                     },
-                    "tags": {
+                    "tagValues": {
                         "value": "[parameters('commonTags')]"
                     }
                 }
@@ -199,7 +195,7 @@
                     "storageAccountName": {
                         "value": "[reference('storageAccountName').outputs.resourceName.value]"
                     },
-                    "tags": {
+                    "tagValues": {
                         "value": "[parameters('commonTags')]"
                     }
                 }
@@ -234,7 +230,7 @@
                     "defaultDataLakeStorageFilesystemName": {
                         "value": "[parameters('defaultDataLakeStorageFilesystemName')]"
                     },
-                    "tags": {
+                    "tagValues": {
                         "value": "[parameters('commonTags')]"
                     }
                 }

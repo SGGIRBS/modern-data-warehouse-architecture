@@ -16,6 +16,13 @@
         },
         "defaultDataLakeStorageFilesystemName": {
             "value": "Test"
+        },
+        "commonTags": {
+            "value": {
+                "Owner": "Infra",
+                "ManagedBy": "ARM Template"
+            }             
         }
+
     }
 }
