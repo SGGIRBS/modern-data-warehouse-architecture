@@ -11,13 +11,6 @@
                 "description": "Data Lake Storage account that you will use for Synapse Workspace."
             }
         },
-        "defaultDataLakeStorageFilesystemName": {
-            "defaultValue": "workspace",
-            "type": "string",
-            "metadata": {
-                "description": "Container in Data Lake Storage account that you will use for Synapse Workspace."
-            }
-        },
         "sqlAdministratorLogin": {
             "type": "string"
         },
@@ -104,7 +97,7 @@
                         {
                             "type": "Microsoft.Storage/storageAccounts/blobServices/containers/providers/roleAssignments",
                             "apiVersion": "2018-09-01-preview",
-                            "name": "[concat(parameters('defaultDataLakeStorageAccountName'), '/default/', parameters('defaultDataLakeStorageFilesystemName'), '/Microsoft.Authorization/',  guid(concat(resourceGroup().id, '/', variables('storageBlobDataContributorRoleID'), '/', parameters('synapseWorkspaceName'))))]",
+                            "name": "[concat(parameters('defaultDataLakeStorageAccountName'), '/default/', '/Microsoft.Authorization/',  guid(concat(resourceGroup().id, '/', variables('storageBlobDataContributorRoleID'), '/', parameters('synapseWorkspaceName'))))]",
                             "location": "[parameters('storageLocation')]",
                             "properties": {
                                 "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', variables('storageBlobDataContributorRoleID'))]",

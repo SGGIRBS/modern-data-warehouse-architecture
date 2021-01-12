@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.1.0",
     "parameters": {
-        "companyName": {
+        "solutionName": {
             "type": "string",
             "metadata": {
                 "description": "The name of the company you're deploying for"
@@ -41,7 +41,7 @@
     "outputs": {
         "resourceName": {
             "type": "string",
-            "value": "[concat(toLower(parameters('companyName')), toLower(parameters('resourceTypeAbbreviation')), toLower(parameters('environment')), padLeft(string(parameters('instanceNumber')),2,'0'))]"
+            "value": "[concat(toLower(parameters('solutionName')), toLower(parameters('resourceTypeAbbreviation')), toLower(parameters('environment')), padLeft(string(parameters('instanceNumber')),2,'0'))]"
         }
     }
 }
