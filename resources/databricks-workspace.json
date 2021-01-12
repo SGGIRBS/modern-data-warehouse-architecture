@@ -6,6 +6,9 @@
             "type": "string",
             "metadata": {
                 "description": "The name of the workspace"
+            },
+        "tags": {
+            "type": "object"
             }
         }
     },
@@ -18,6 +21,7 @@
             "type": "Microsoft.Databricks/workspaces",
             "apiVersion": "2018-04-01",
             "location": "[resourceGroup().location]",
+            "tags": "[parameters('tags')]",
             "name": "[parameters('workspaceName')]",
             "sku": {
                 "name": "standard"
