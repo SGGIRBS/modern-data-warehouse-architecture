@@ -155,7 +155,7 @@
                     "dataFactoryName": {
                         "value": "[reference('dataFactoryName').outputs.resourceName.value]"
                     },
-                    "tagValues": {
+                    "resourceTags": {
                         "value": "[parameters('commonTags')]"
                     }
                 }
@@ -175,7 +175,7 @@
                     "workspaceName": {
                         "value": "[reference('databricksWorkspaceName').outputs.resourceName.value]"
                     },
-                    "tagValues": {
+                    "resourceTags": {
                         "value": "[parameters('commonTags')]"
                     }
                 }
@@ -195,7 +195,7 @@
                     "storageAccountName": {
                         "value": "[reference('storageAccountName').outputs.resourceName.value]"
                     },
-                    "tagValues": {
+                    "resourceTags": {
                         "value": "[parameters('commonTags')]"
                     }
                 }
@@ -230,7 +230,7 @@
                     "defaultDataLakeStorageFilesystemName": {
                         "value": "[parameters('defaultDataLakeStorageFilesystemName')]"
                     },
-                    "tagValues": {
+                    "resourceTags": {
                         "value": "[parameters('commonTags')]"
                     }
                 }

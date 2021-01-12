@@ -24,7 +24,7 @@
         "sqlAdministratorPassword": {
             "type": "securestring"
         },
-        "tagValues": {
+        "resourceTags": {
             "type": "object"
         },
         "storageSubscriptionID": {
@@ -59,7 +59,7 @@
             "apiVersion": "2019-06-01-preview",
             "name": "[parameters('synapseWorkspaceName')]",
             "location": "[resourceGroup().location]",
-            "tags": "[parameters('tagValues')]",
+            "tags": "[parameters('resourceTags')]",
             "identity": {
                 "type": "SystemAssigned"
             },
