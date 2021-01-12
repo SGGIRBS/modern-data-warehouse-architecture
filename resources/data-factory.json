@@ -6,9 +6,6 @@
             "type": "string",
             "metadata": {
                 "description": "The name of the data factory instance"
-            },
-        "resourceTags": {
-            "type": "object"
             }
         }
     },
@@ -20,7 +17,6 @@
             "name": "[parameters('dataFactoryName')]",
             "apiVersion": "2018-06-01",
             "location": "[resourceGroup().location]",
-            "tags": "[parameters('resourceTags')]",
             "type": "Microsoft.DataFactory/factories",
             "identity": {
                 "type": "SystemAssigned"

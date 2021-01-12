@@ -20,13 +20,6 @@
                 "description": "The name of the environment"
             }
         },
-        "commonTags": {
-            "type": "object",
-            "defaultValue": {
-                "Owner": "Infra",
-                "ManagedBy": "ARM Template"
-            }  
-        },
         "sqlAdministratorLogin": {
             "type": "string"
         },
@@ -158,9 +151,6 @@
                 "parameters": {
                     "dataFactoryName": {
                         "value": "[reference('dataFactoryName').outputs.resourceName.value]"
-                    },
-                    "tagValues": {
-                        "value": "[parameters('commonTags')]"
                     }
                 }
             }
@@ -178,9 +168,6 @@
                 "parameters": {
                     "workspaceName": {
                         "value": "[reference('databricksWorkspaceName').outputs.resourceName.value]"
-                    },
-                    "resourceTags": {
-                        "value": "[parameters('commonTags')]"
                     }
                 }
             }
@@ -198,9 +185,6 @@
                 "parameters": {
                     "storageAccountName": {
                         "value": "[reference('storageAccountName').outputs.resourceName.value]"
-                    },
-                    "resourceTags": {
-                        "value": "[parameters('commonTags')]"
                     }
                 }
             }
@@ -233,9 +217,6 @@
                     },
                     "defaultDataLakeStorageFilesystemName": {
                         "value": "[parameters('defaultDataLakeStorageFilesystemName')]"
-                    },
-                    "resourceTags": {
-                        "value": "[parameters('commonTags')]"
                     }
                 }
             }
