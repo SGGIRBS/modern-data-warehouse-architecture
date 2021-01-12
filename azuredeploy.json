@@ -22,7 +22,7 @@
         },
         "templateBaseUri": {
             "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/SGGIRBS/modern-datawarehouse-architecture/master/",
+            "defaultValue": "https://raw.githubusercontent.com/SGGIRBS/modern-data-warehouse-architecture/main/",
             "metadata": {
                 "description": "The GIT repository the templates are stored in"
             }
