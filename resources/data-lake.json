@@ -35,19 +35,6 @@
                 "name": "Standard_RAGRS"
             },
             "kind": "StorageV2"
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-            "apiVersion": "2020-08-01-preview",
-            "name": "[concat(parameters('storageAccountName'), '/default/', parameters('defaultDataLakeStorageFilesystemName'))]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
-            ],
-            "properties": {
-                "defaultEncryptionScope": "$account-encryption-key",
-                "denyEncryptionScopeOverride": false,
-                "publicAccess": "None"
-            }
         }
     ]
 }
