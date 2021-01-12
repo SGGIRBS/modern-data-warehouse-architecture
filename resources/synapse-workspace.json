@@ -85,38 +85,6 @@
                     }
                 }
             ]
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
-            "name": "storageRoleDeploymentResource",
-            "dependsOn": [
-                "[concat('Microsoft.Synapse/workspaces/', parameters('synapseWorkspaceName'))]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "parameters": {},
-                    "variables": {},
-                    "resources": [
-                        {
-                            "type": "Microsoft.Authorization/roleAssignments",
-                            "apiVersion": "2020-04-01-preview",
-                            "scope": "[concat('Microsoft.Storage/storageAccounts', '/', parameters('defaultDataLakeStorageAccountName'))]",
-                            "location": "[parameters('storageLocation')]",
-                            "properties": {
-                                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', variables('storageBlobDataContributorRoleID'))]",
-                                "principalId": "[reference(concat('Microsoft.Synapse/workspaces/', parameters('synapseWorkspaceName')), '2019-06-01-preview', 'Full').identity.principalId]",
-                                "principalType": "ServicePrincipal"
-                            }
-                        }
-                    ]
-                }
-            },
-            "subscriptionId": "[parameters('storageSubscriptionID')]",
-            "resourceGroup": "[parameters('storageResourceGroupName')]"
         }
     ],
     "outputs": {}
