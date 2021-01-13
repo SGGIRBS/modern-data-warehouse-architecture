@@ -20,7 +20,7 @@
             "location": "[resourceGroup().location]",
             "name": "[parameters('workspaceName')]",
             "sku": {
-                "name": "standard"
+                "name": "[parameters('sku')]"
             },
             "comments": "Please do not use an existing resource group for ManagedResourceGroupId.",
             "properties": {
